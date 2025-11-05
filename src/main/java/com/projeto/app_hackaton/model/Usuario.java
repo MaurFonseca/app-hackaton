@@ -42,6 +42,13 @@ public class Usuario implements UserDetails {
     @Builder.Default
     private TipoUsuario tipo = TipoUsuario.PARTICIPANTE;
 
+    @ManyToOne
+    @JoinColumn(name = "id_equipe")
+    private Equipe equipe;
+
+    @OneToMany(mappedBy = "mentor")
+    private List<Avaliacao> avaliacoes;
+
     // Metodos obrigatorios da interface UserDetails do spring security:
 
     // Metodo de retorno das autoridades de um usuário dentro do sistema...
