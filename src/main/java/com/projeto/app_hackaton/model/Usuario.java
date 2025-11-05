@@ -18,6 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Usuario implements UserDetails {
 
     // Principais Atributos:
@@ -38,7 +39,8 @@ public class Usuario implements UserDetails {
     private String senha;
 
     @Enumerated(EnumType.STRING)
-    private TipoUsuario tipo;
+    @Builder.Default
+    private TipoUsuario tipo = TipoUsuario.PARTICIPANTE;
 
     // Metodos obrigatorios da interface UserDetails do spring security:
 
