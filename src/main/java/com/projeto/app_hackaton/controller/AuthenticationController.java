@@ -1,6 +1,7 @@
 package com.projeto.app_hackaton.controller;
 
-import com.projeto.app_hackaton.dto.usuario.UsuarioLogin;
+import com.projeto.app_hackaton.dto.usuario.UsuarioLoginRequest;
+import com.projeto.app_hackaton.dto.usuario.UsuarioLoginResponse;
 import com.projeto.app_hackaton.dto.usuario.UsuarioRegister;
 import com.projeto.app_hackaton.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,8 @@ public class AuthenticationController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody UsuarioLogin login){
-        authenticationService.login(login);
-
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UsuarioLoginResponse> login(@RequestBody UsuarioLoginRequest login){
+        return ResponseEntity.ok().body(authenticationService.login(login));
     }
 
     @PostMapping("/register")

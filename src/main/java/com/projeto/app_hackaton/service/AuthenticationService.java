@@ -1,6 +1,7 @@
 package com.projeto.app_hackaton.service;
 
-import com.projeto.app_hackaton.dto.usuario.UsuarioLogin;
+import com.projeto.app_hackaton.dto.usuario.UsuarioLoginRequest;
+import com.projeto.app_hackaton.dto.usuario.UsuarioLoginResponse;
 import com.projeto.app_hackaton.dto.usuario.UsuarioRegister;
 import com.projeto.app_hackaton.model.Usuario;
 import com.projeto.app_hackaton.repository.UsuarioRepository;
@@ -20,11 +21,16 @@ public class AuthenticationService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public void login(UsuarioLogin login){
+    @Autowired
+    private TokenService tokenService;
+
+    public UsuarioLoginResponse login(UsuarioLoginRequest login){
         var usernamePassword = new UsernamePasswordAuthenticationToken(login.login(), login.senha());
 
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
+        UsuarioLoginResponse response = new UsuarioLoginResponse(tokenService.tokenGeneration((Usuario) auth.getPrincipal()));
+        return  response;
 
     }
 
