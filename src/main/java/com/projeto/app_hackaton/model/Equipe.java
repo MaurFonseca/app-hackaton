@@ -4,6 +4,7 @@ import com.projeto.app_hackaton.model.enums.StatusEquipe;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,8 @@ public class Equipe {
     private StatusEquipe statusEquipe = StatusEquipe.INSCRITA;
 
     @OneToMany(mappedBy = "equipe")
-    private List<Usuario> participantes;
+    @Builder.Default
+    private List<Usuario> participantes = new ArrayList<>();
 
     @OneToOne(mappedBy = "equipe", cascade = CascadeType.ALL)
     private Projeto projeto;
