@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -47,7 +48,15 @@ public class Usuario implements UserDetails {
     private Equipe equipe;
 
     @OneToMany(mappedBy = "mentor")
-    private List<Avaliacao> avaliacoes;
+    @Builder.Default
+    private List<Avaliacao> avaliacoes = new ArrayList<>();
+
+    public Usuario(String nome, String email, String senha, TipoUsuario tipo) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.tipo = tipo;
+    }
 
     // Metodos obrigatorios da interface UserDetails do spring security:
 

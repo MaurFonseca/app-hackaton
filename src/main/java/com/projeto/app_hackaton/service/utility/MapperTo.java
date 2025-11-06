@@ -3,6 +3,7 @@ package com.projeto.app_hackaton.service.utility;
 import com.projeto.app_hackaton.dto.equipe.EquipeResponse;
 import com.projeto.app_hackaton.dto.equipe.ProjetoResEquipe;
 import com.projeto.app_hackaton.dto.equipe.UsuarioResEquipe;
+import com.projeto.app_hackaton.dto.projeto.ProjetoResponse;
 import com.projeto.app_hackaton.dto.usuario.UsuarioSearch;
 import com.projeto.app_hackaton.model.Equipe;
 import com.projeto.app_hackaton.model.Projeto;
@@ -42,6 +43,10 @@ public class MapperTo {
 
     private ProjetoResEquipe toProjetoResEquipe(Projeto projeto){
         return new ProjetoResEquipe(projeto.getNome(), projeto.getUrlGit(), projeto.getStatusProjeto());
+    }
+
+    public ProjetoResponse mapToProjetoResponse(Projeto projeto){
+        return new ProjetoResponse(projeto.getId(), projeto.getNome(), projeto.getUrlGit(), projeto.getDescricao(), projeto.getStatusProjeto(), projeto.getEquipe().getId());
     }
 
 }

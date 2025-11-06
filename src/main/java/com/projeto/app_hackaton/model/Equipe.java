@@ -32,4 +32,9 @@ public class Equipe {
 
     @OneToOne(mappedBy = "equipe", cascade = CascadeType.ALL)
     private Projeto projeto;
+
+    public Equipe(String nome, StatusEquipe statusEquipe) {
+        this.nome = nome;
+        this.statusEquipe = statusEquipe;
+    }
 }

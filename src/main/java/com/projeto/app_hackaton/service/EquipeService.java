@@ -47,6 +47,14 @@ public class EquipeService {
         if (equipe.getParticipantes().size() >= 5){
             throw new RuntimeException("Equipe cheia");
         }
+        for(Usuario usuario : equipe.getParticipantes()){
+            if(usuario.getId().equals(participante.getId())){
+                throw new RuntimeException("Usuario já cadastrado nessa equipe");
+            }
+        }
+        if(participante.getEquipe() != null){
+            throw new RuntimeException("Usuário já pertence a uma equipe");
+        }
         participante.setEquipe(equipe);
         usuarioRepository.save(participante);
     }

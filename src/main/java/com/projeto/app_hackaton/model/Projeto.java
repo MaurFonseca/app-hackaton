@@ -28,9 +28,17 @@ public class Projeto {
     private StatusProjeto statusProjeto = StatusProjeto.SUBMETIDO;
 
     @OneToOne
-    @MapsId
+    @JoinColumn(name = "equipe_id")
     private Equipe equipe;
 
     @OneToOne(mappedBy = "projeto")
     private Avaliacao avaliacao;
+
+    public Projeto(String nome, String descricao, String urlGit, StatusProjeto statusProjeto, Equipe equipe) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.urlGit = urlGit;
+        this.statusProjeto = statusProjeto;
+        this.equipe = equipe;
+    }
 }
